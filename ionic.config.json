@@ -1,0 +1,7 @@
+{
+  "name": "FastPizza ",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular-standalone"
+}
