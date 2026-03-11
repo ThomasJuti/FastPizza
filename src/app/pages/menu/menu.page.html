@@ -1,0 +1,175 @@
+<ion-header class="ion-no-border">
+  <ion-toolbar class="custom-toolbar">
+    <ion-title class="toolbar-title">
+      <span class="brand-text">🍕 Fast Pizza</span>
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content class="menu-content" [fullscreen]="true">
+  <!-- Top App Bar equivalent -->
+  <div class="header-container">
+    <ion-button fill="clear" class="icon-btn">
+      <ion-icon name="search-outline"></ion-icon>
+    </ion-button>
+    <div class="location-selector" (click)="openCitySelect()">
+      <p>Location</p>
+      <h4>
+        <ion-icon name="location-outline" class="location-icon"></ion-icon>
+        {{ selectedCityLabel }}
+        <ion-icon name="chevron-down-outline" class="chevron-icon"></ion-icon>
+      </h4>
+    </div>
+    <ion-select
+      #citySelect
+      [value]="selectedCity"
+      (ionChange)="onCityChange($event)"
+      interface="action-sheet"
+      [interfaceOptions]="{ header: 'Selecciona tu ciudad' }"
+      class="city-select-hidden"
+    >
+      @for (city of cities; track city.value) {
+        <ion-select-option [value]="city.value">{{ city.label }}</ion-select-option>
+      }
+    </ion-select>
+    <ion-button fill="clear" class="icon-btn cart-header-btn" (click)="goToCart()">
+      <ion-icon name="cart-outline"></ion-icon>
+      @if (cartService.itemCount > 0) {
+        <ion-badge class="header-cart-badge">{{ cartService.itemCount }}</ion-badge>
+      }
+    </ion-button>
+  </div>
+
+  <!-- Promo Banner -->
+  <div class="promo-banner">
+    <div class="promo-text">
+      <p>Get special discount</p>
+      <h2>Up to 95%</h2>
+      <button class="claim-btn">Claim voucher</button>
+    </div>
+    <div class="promo-image-wrapper">
+      <!-- Using an existing pizza image as a placeholder for the hero burger -->
+      <img src="assets/images/pepperoni.jpg" alt="Promo" class="promo-img" />
+    </div>
+  </div>
+
+  <!-- Categories Scroll -->
+  <div class="categories-scroll">
+    <div class="category-item" [class.active]="selectedSegment === 'pizzas' && selectedCategory === 'todas'"
+      (click)="selectedSegment = 'pizzas'; filterCategory('todas')">
+      <div class="category-icon-box">
+        <ion-icon name="fast-food-outline"></ion-icon>
+      </div>
+      <span>All Pizzas</span>
+    </div>
+    <div class="category-item" [class.active]="selectedSegment === 'pizzas' && selectedCategory === 'clasica'"
+      (click)="selectedSegment = 'pizzas'; filterCategory('clasica')">
+      <div class="category-icon-box">
+        <ion-icon name="pizza-outline"></ion-icon>
+      </div>
+      <span>Classic</span>
+    </div>
+    <div class="category-item" [class.active]="selectedSegment === 'pizzas' && selectedCategory === 'premium'"
+      (click)="selectedSegment = 'pizzas'; filterCategory('premium')">
+      <div class="category-icon-box">
+        <ion-icon name="star-outline"></ion-icon>
+      </div>
+      <span>Premium</span>
+    </div>
+    <div class="category-item" [class.active]="selectedSegment === 'pizzas' && selectedCategory === 'vegetariana'"
+      (click)="selectedSegment = 'pizzas'; filterCategory('vegetariana')">
+      <div class="category-icon-box">
+        <ion-icon name="leaf-outline"></ion-icon>
+      </div>
+      <span>Veggie</span>
+    </div>
+    <div class="category-item" [class.active]="selectedSegment === 'beverages'" (click)="selectedSegment = 'beverages'">
+      <div class="category-icon-box">
+        <ion-icon name="cafe-outline"></ion-icon>
+      </div>
+      <span>Drinks</span>
+    </div>
+  </div>
+
+  <!-- Weather & recommendation (API) -->
+  @if (weather) {
+  <div class="weather-section">
+    <div class="weather-card">
+      <h4 class="weather-card-title">Clima en {{ weather.city }}</h4>
+      <div class="weather-card-body">
+        <img [src]="weather.icon" [alt]="weather.description" class="weather-icon" />
+        <div class="weather-details">
+          <span class="weather-temp">{{ weather.temperature }}°C</span>
+          <span class="weather-desc">{{ weather.description }}</span>
+          <span class="weather-extra">Sensación {{ weather.feelsLike }}°C · {{ weather.humidity }}% humedad</span>
+        </div>
+      </div>
+    </div>
+    @if (weatherMessage) {
+    <div class="weather-recommendation">
+      <ion-icon name="sunny-outline" class="recommendation-icon"></ion-icon>
+      <p class="recommendation-text">{{ weatherMessage }}</p>
+    </div>
+    }
+  </div>
+  }
+
+  <!-- Section Header -->
+  <div class="section-header">
+    <h3>Featured</h3>
+  </div>
+
+  <!-- Product Grid -->
+  @if (isLoading) {
+  <div class="loading-container">
+    <ion-spinner name="crescent"></ion-spinner>
+  </div>
+  } @else {
+  <div class="product-grid">
+    @if (selectedSegment === 'pizzas') {
+    @for (pizza of filteredPizzas; track pizza.id) {
+    <div class="product-card" (click)="viewPizzaDetail(pizza)">
+      @if (pizza.category === 'premium') {
+      <div class="product-badge">
+        <ion-icon name="flame"></ion-icon>
+      </div>
+      }
+      <div class="product-image-container">
+        <img [src]="pizza.image" [alt]="pizza.name" />
+      </div>
+      <div class="product-info">
+        <h4>{{ pizza.name }}</h4>
+        <p class="subtitle">20 Min | 160 Sell</p>
+        <div class="product-footer">
+          <span class="price">${{ pizza.price | number }}</span>
+          <button class="add-btn" (click)="addPizzaToCart(pizza, $event)">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+    }
+
+    @if (selectedSegment === 'beverages') {
+    @for (beverage of beverages; track beverage.id) {
+    <div class="product-card">
+      <div class="product-image-container drink">
+        <img [src]="beverage.image" [alt]="beverage.name" />
+      </div>
+      <div class="product-info">
+        <h4>{{ beverage.name }}</h4>
+        <p class="subtitle">{{ beverage.size }} | Cold</p>
+        <div class="product-footer">
+          <span class="price">${{ beverage.price | number }}</span>
+          <button class="add-btn" (click)="addBeverageToCart(beverage)">
+            <ion-icon name="add"></ion-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+    }
+    }
+  </div>
+  }
+</ion-content>

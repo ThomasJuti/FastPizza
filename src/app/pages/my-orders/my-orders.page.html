@@ -1,0 +1,56 @@
+<ion-header class="ion-no-border">
+      <ion-toolbar class="custom-toolbar">
+        <ion-title class="toolbar-title">Mis Pedidos</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="orders-content" [fullscreen]="true">
+      @if (isLoading) {
+        <div class="loading-container">
+          <ion-spinner name="crescent" color="primary"></ion-spinner>
+        </div>
+      } @else if (orders.length === 0) {
+        <div class="empty-state">
+          <div class="empty-icon">📋</div>
+          <h2>Sin pedidos aún</h2>
+          <p>Tus pedidos aparecerán aquí</p>
+          <button class="btn-primary" (click)="goToMenu()">
+            Explorar Menú
+          </button>
+        </div>
+      } @else {
+        <div class="orders-list">
+          @for (order of orders; track order.id) {
+            <div class="order-card">
+              <div class="order-header">
+                <div class="order-id-row">
+                  <span class="order-emoji">🍕</span>
+                  <span class="order-id">Pedido #{{ order.id?.substring(0, 8) }}</span>
+                </div>
+                <span class="status-badge" [class]="order.status">
+                  {{ getStatusLabel(order.status) }}
+                </span>
+              </div>
+              <div class="order-items-preview">
+                @for (item of order.items; track item.id) {
+                  <span class="item-tag">{{ item.quantity }}x {{ item.name }}</span>
+                }
+              </div>
+              <div class="order-footer">
+                <div class="order-meta">
+                  <ion-icon name="time-outline"></ion-icon>
+                  <span>{{ formatDate(order.createdAt) }}</span>
+                </div>
+                <span class="order-total">\$ {{ order.total | number }}</span>
+              </div>
+              @if (order.status !== 'entregado' && order.status !== 'cancelado') {
+                <button class="map-btn" (click)="viewMap(order)">
+                  <ion-icon name="map-outline"></ion-icon>
+                  Ver Mapa
+                </button>
+              }
+            </div>
+          }
+        </div>
+      }
+    </ion-content>

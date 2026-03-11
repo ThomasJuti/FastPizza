@@ -1,0 +1,44 @@
+<ion-header class="ion-no-border">
+      <ion-toolbar class="custom-toolbar">
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs/my-orders" text="" color="light"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="toolbar-title">Mapa de Entrega</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="map-content" [fullscreen]="true">
+      <!-- Info Bar -->
+      <div class="info-bar">
+        <div class="info-item">
+          <span class="info-emoji">🏭</span>
+          <div>
+            <span class="info-label">Origen</span>
+            <span class="info-value">{{ pizzeriaName }}</span>
+          </div>
+        </div>
+        <div class="info-divider">→</div>
+        <div class="info-item">
+          <span class="info-emoji">📍</span>
+          <div>
+            <span class="info-label">Destino</span>
+            <span class="info-value">{{ deliveryAddress || 'Tu dirección' }}</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Map -->
+      <div id="delivery-map" class="map-container"></div>
+
+      <!-- Legend -->
+      <div class="map-legend">
+        <div class="legend-item">
+          <span class="legend-dot origin"></span>
+          <span>Fast Pizza (Origen)</span>
+        </div>
+        <div class="legend-item">
+          <span class="legend-dot destination"></span>
+          <span>Tu dirección (Destino)</span>
+        </div>
+      </div>
+    </ion-content>

@@ -1,36 +1,58 @@
 import { Routes } from '@angular/router';
 import { TabsPage } from './tabs.page';
+import { authGuard } from '../guards/auth.guard';
 
 export const routes: Routes = [
   {
     path: 'tabs',
     component: TabsPage,
+    canActivate: [authGuard],
     children: [
       {
-        path: 'tab1',
+        path: 'menu',
         loadComponent: () =>
-          import('../tab1/tab1.page').then((m) => m.Tab1Page),
+          import('../pages/menu/menu.page').then((m) => m.MenuPage),
       },
       {
-        path: 'tab2',
+        path: 'build-pizza',
         loadComponent: () =>
-          import('../tab2/tab2.page').then((m) => m.Tab2Page),
+          import('../pages/build-pizza/build-pizza.page').then((m) => m.BuildPizzaPage),
       },
       {
-        path: 'tab3',
+        path: 'cart',
         loadComponent: () =>
-          import('../tab3/tab3.page').then((m) => m.Tab3Page),
+          import('../pages/cart/cart.page').then((m) => m.CartPage),
+      },
+      {
+        path: 'checkout',
+        loadComponent: () =>
+          import('../pages/checkout/checkout.page').then((m) => m.CheckoutPage),
+      },
+      {
+        path: 'delivery-map',
+        loadComponent: () =>
+          import('../pages/delivery-map/delivery-map.page').then((m) => m.DeliveryMapPage),
+      },
+      {
+        path: 'my-orders',
+        loadComponent: () =>
+          import('../pages/my-orders/my-orders.page').then((m) => m.MyOrdersPage),
+      },
+      {
+        path: 'profile',
+        loadComponent: () =>
+          import('../pages/profile/profile.page').then((m) => m.ProfilePage),
       },
       {
         path: '',
-        redirectTo: '/tabs/tab1',
+        redirectTo: '/tabs/menu',
         pathMatch: 'full',
       },
     ],
   },
   {
     path: '',
-    redirectTo: '/tabs/tab1',
+    redirectTo: '/tabs/menu',
     pathMatch: 'full',
   },
 ];

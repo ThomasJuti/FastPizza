@@ -1,0 +1,84 @@
+<ion-header class="ion-no-border">
+      <ion-toolbar class="custom-toolbar">
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs/menu" text="" color="light"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="toolbar-title">Arma tu Pizza</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="build-content" [fullscreen]="true">
+      @if (isLoading) {
+        <div class="loading-container">
+          <ion-spinner name="crescent" color="primary"></ion-spinner>
+        </div>
+      } @else {
+        <!-- Pizza Preview -->
+        <div class="pizza-preview">
+          <div class="preview-circle">
+            <span class="pizza-emoji">🍕</span>
+            <div class="selected-count">{{ selectedIngredients.length }} ingredientes</div>
+          </div>
+        </div>
+
+        <!-- Size Selection -->
+        <div class="section">
+          <h2 class="section-title">Tamaño</h2>
+          <div class="size-options">
+            @for (size of sizes; track size.value) {
+              <button
+                class="size-option"
+                [class.active]="selectedSize === size.value"
+                (click)="selectSize(size.value, size.basePrice)"
+              >
+                <span class="size-icon">{{ size.icon }}</span>
+                <span class="size-name">{{ size.label }}</span>
+                <span class="size-price">\$ {{ size.basePrice | number }}</span>
+              </button>
+            }
+          </div>
+        </div>
+
+        <!-- Ingredient Categories -->
+        @for (category of ingredientCategories; track category.key) {
+          <div class="section">
+            <h2 class="section-title">{{ category.icon }} {{ category.label }}</h2>
+            <div class="ingredients-grid">
+              @for (ingredient of getIngredientsByCategory(category.key); track ingredient.id) {
+                <button
+                  class="ingredient-chip"
+                  [class.selected]="isSelected(ingredient)"
+                  (click)="toggleIngredient(ingredient)"
+                >
+                  <span class="ingredient-name">{{ ingredient.name }}</span>
+                  @if (ingredient.price > 0) {
+                    <span class="ingredient-price">+\$ {{ ingredient.price | number }}</span>
+                  } @else {
+                    <span class="ingredient-price free">Incluida</span>
+                  }
+                  @if (isSelected(ingredient)) {
+                    <ion-icon name="checkmark-circle" class="check-icon"></ion-icon>
+                  }
+                </button>
+              }
+            </div>
+          </div>
+        }
+
+        <!-- Bottom Total Bar -->
+        <div class="total-bar">
+          <div class="total-info">
+            <span class="total-label">Total</span>
+            <span class="total-price">\$ {{ totalPrice | number }}</span>
+          </div>
+          <button
+            class="add-to-cart-btn"
+            (click)="addToCart()"
+            [disabled]="selectedIngredients.length === 0"
+          >
+            <ion-icon name="cart-outline"></ion-icon>
+            Agregar al Carrito
+          </button>
+        </div>
+      }
+    </ion-content>

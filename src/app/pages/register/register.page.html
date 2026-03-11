@@ -1,0 +1,105 @@
+<ion-content class="auth-content" [fullscreen]="true">
+  <div class="auth-container">
+    <div class="auth-hero">
+      <div class="hero-top">
+        <button class="icon-btn back-btn" (click)="goBack()">
+          <ion-icon name="arrow-back-outline"></ion-icon>
+        </button>
+        <div class="hero-badge">
+          <ion-icon name="pizza-outline"></ion-icon>
+        </div>
+      </div>
+      <div class="hero-text">
+        <span class="hero-kicker">Crear cuenta</span>
+        <h1>Tu perfil de delivery</h1>
+        <p>Completa tus datos y personaliza tu experiencia</p>
+      </div>
+    </div>
+
+    <div class="auth-card">
+      <div class="input-grid">
+        <div class="input-group full">
+          <ion-icon name="person-outline" class="input-icon"></ion-icon>
+          <input
+            type="text"
+            [(ngModel)]="displayName"
+            placeholder="Nombre completo"
+            class="custom-input"
+          />
+        </div>
+
+        <div class="input-group full">
+          <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+          <input
+            type="email"
+            [(ngModel)]="email"
+            placeholder="Correo electronico"
+            class="custom-input"
+          />
+        </div>
+
+        <div class="input-group full">
+          <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+          <input
+            [type]="showPassword ? 'text' : 'password'"
+            [(ngModel)]="password"
+            placeholder="Contrasena (minimo 6 caracteres)"
+            class="custom-input"
+          />
+          <button class="toggle-password" (click)="showPassword = !showPassword">
+            {{ showPassword ? '🙈' : '👁️' }}
+          </button>
+        </div>
+
+        <div class="input-group half">
+          <ion-icon name="call-outline" class="input-icon"></ion-icon>
+          <input
+            type="tel"
+            [(ngModel)]="phone"
+            placeholder="Telefono"
+            class="custom-input"
+          />
+        </div>
+
+        <div class="input-group half">
+          <ion-icon name="location-outline" class="input-icon"></ion-icon>
+          <input
+            type="text"
+            [(ngModel)]="address"
+            placeholder="Direccion de entrega"
+            class="custom-input"
+          />
+        </div>
+      </div>
+
+      @if (errorMessage) {
+        <div class="error-message">
+          <ion-text color="danger">{{ errorMessage }}</ion-text>
+        </div>
+      }
+
+      @if (successMessage) {
+        <div class="success-message">
+          <ion-text color="success">{{ successMessage }}</ion-text>
+        </div>
+      }
+
+      <button
+        class="btn-primary"
+        (click)="register()"
+        [disabled]="isLoading"
+      >
+        @if (isLoading) {
+          <ion-spinner name="crescent" color="light"></ion-spinner>
+        } @else {
+          Crear cuenta
+        }
+      </button>
+
+      <p class="auth-link">
+        ¿Ya tienes cuenta?
+        <a (click)="goBack()">Inicia sesion</a>
+      </p>
+    </div>
+  </div>
+</ion-content>

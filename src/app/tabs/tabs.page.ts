@@ -1,18 +1,20 @@
-import { Component, EnvironmentInjector, inject } from '@angular/core';
-import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel } from '@ionic/angular/standalone';
+import { Component, inject } from '@angular/core';
+import { IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { triangle, ellipse, square } from 'ionicons/icons';
+import { homeOutline, bagHandleOutline, receiptOutline, personOutline } from 'ionicons/icons';
+import { CartService } from '../services/cart.service';
 
 @Component({
   selector: 'app-tabs',
-  templateUrl: 'tabs.page.html',
-  styleUrls: ['tabs.page.scss'],
-  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel],
+  standalone: true,
+  imports: [IonTabs, IonTabBar, IonTabButton, IonIcon, IonLabel, IonBadge],
+  templateUrl: './tabs.page.html',
+  styleUrls: ['./tabs.page.scss']
 })
 export class TabsPage {
-  public environmentInjector = inject(EnvironmentInjector);
+  cartService = inject(CartService);
 
   constructor() {
-    addIcons({ triangle, ellipse, square });
+    addIcons({ homeOutline, bagHandleOutline, receiptOutline, personOutline });
   }
 }

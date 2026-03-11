@@ -1,0 +1,106 @@
+<ion-header class="ion-no-border">
+      <ion-toolbar class="custom-toolbar">
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs/cart" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="toolbar-title">Checkout</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="checkout-content" [fullscreen]="true">
+      @if (orderSuccess) {
+        <!-- Order Success -->
+        <div class="success-container">
+          <div class="success-icon">
+            <ion-icon name="checkmark-circle"></ion-icon>
+          </div>
+          <h2>¡Pedido Confirmado!</h2>
+          <p>Tu pedido ha sido recibido y está siendo preparado 🍕</p>
+          <p class="order-id">Pedido #{{ orderId?.substring(0, 8) }}</p>
+          <button class="btn-primary" (click)="viewDeliveryMap()">
+            🗺️ Ver Mapa de Entrega
+          </button>
+          <button class="btn-secondary" (click)="goToOrders()">
+            Ver Mis Pedidos
+          </button>
+        </div>
+      } @else {
+        <!-- Delivery Info -->
+        <div class="section">
+          <h2 class="section-title">📍 Dirección de Entrega</h2>
+          <div class="input-group">
+            <ion-icon name="location-outline" class="input-icon"></ion-icon>
+            <input
+              type="text"
+              [(ngModel)]="address"
+              placeholder="Dirección completa"
+              class="custom-input"
+            />
+          </div>
+          <div class="input-group">
+            <ion-icon name="call-outline" class="input-icon"></ion-icon>
+            <input
+              type="tel"
+              [(ngModel)]="phone"
+              placeholder="Teléfono de contacto"
+              class="custom-input"
+            />
+          </div>
+          <div class="input-group">
+            <ion-icon name="chatbox-outline" class="input-icon"></ion-icon>
+            <input
+              type="text"
+              [(ngModel)]="notes"
+              placeholder="Notas adicionales (opcional)"
+              class="custom-input"
+            />
+          </div>
+        </div>
+
+        <!-- Order Summary -->
+        <div class="section">
+          <h2 class="section-title">🧾 Resumen</h2>
+          <div class="summary-card">
+            @for (item of cartService.currentItems; track item.id) {
+              <div class="summary-item">
+                <span>{{ item.quantity }}x {{ item.name }}</span>
+                <span>\$ {{ (item.price * item.quantity) | number }}</span>
+              </div>
+            }
+            <div class="summary-divider"></div>
+            <div class="summary-item">
+              <span>Subtotal</span>
+              <span>\$ {{ cartService.subtotal | number }}</span>
+            </div>
+            <div class="summary-item">
+              <span>Domicilio</span>
+              <span>\$ {{ cartService.deliveryFee | number }}</span>
+            </div>
+            <div class="summary-item total">
+              <span>Total a Pagar</span>
+              <span>\$ {{ cartService.total | number }}</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- PayPal Button -->
+        <div class="section">
+          <h2 class="section-title">💳 Método de Pago</h2>
+          @if (isLoadingPayPal) {
+            <div class="loading-container">
+              <ion-spinner name="crescent"></ion-spinner>
+              <p>Cargando PayPal...</p>
+            </div>
+          }
+          <div id="paypal-button-container"></div>
+
+          @if (errorMessage) {
+            <div class="error-msg">
+              <ion-text color="danger">{{ errorMessage }}</ion-text>
+            </div>
+          }
+        </div>
+
+        <div style="height: 100px"></div>
+      }
+    </ion-content>

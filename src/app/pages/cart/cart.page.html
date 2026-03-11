@@ -1,0 +1,79 @@
+<ion-header class="ion-no-border">
+      <ion-toolbar class="custom-toolbar">
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/tabs/menu" text="" color="dark"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="toolbar-title">Mi Carrito</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="cart-content" [fullscreen]="true">
+      @if (cartService.currentItems.length === 0) {
+        <div class="empty-cart">
+          <div class="empty-icon">🛒</div>
+          <h2>Tu carrito está vacío</h2>
+          <p>Agrega pizzas y bebidas deliciosas</p>
+          <button class="btn-primary" (click)="goToMenu()">
+            Ver Menú
+          </button>
+        </div>
+      } @else {
+        <div class="cart-items">
+          @for (item of cartService.currentItems; track item.id) {
+            <div class="cart-item">
+              <div class="item-info">
+                <div class="item-type-badge" [class]="item.type">
+                  {{ item.type === 'pizza' ? '🍕' : item.type === 'custom-pizza' ? '🎨' : '🥤' }}
+                </div>
+                <div class="item-details">
+                  <h3 class="item-name">{{ item.name }}</h3>
+                  @if (item.description) {
+                    <p class="item-desc">{{ item.description }}</p>
+                  }
+                  <span class="item-price">\$ {{ item.price | number }}</span>
+                </div>
+              </div>
+              <div class="item-actions">
+                <div class="quantity-control">
+                  <button class="qty-btn" (click)="decreaseQuantity(item)">
+                    <ion-icon name="remove-outline"></ion-icon>
+                  </button>
+                  <span class="qty-value">{{ item.quantity }}</span>
+                  <button class="qty-btn" (click)="increaseQuantity(item)">
+                    <ion-icon name="add-outline"></ion-icon>
+                  </button>
+                </div>
+                <button class="delete-btn" (click)="removeItem(item.id)">
+                  <ion-icon name="trash-outline"></ion-icon>
+                </button>
+              </div>
+            </div>
+          }
+        </div>
+
+        <!-- Summary -->
+        <div class="order-summary">
+          <h3 class="summary-title">Resumen del Pedido</h3>
+          <div class="summary-row">
+            <span>Subtotal</span>
+            <span>\$ {{ cartService.subtotal | number }}</span>
+          </div>
+          <div class="summary-row">
+            <span>Domicilio</span>
+            <span>\$ {{ cartService.deliveryFee | number }}</span>
+          </div>
+          <div class="summary-row total">
+            <span>Total</span>
+            <span>\$ {{ cartService.total | number }}</span>
+          </div>
+        </div>
+
+        <!-- Checkout Button -->
+        <div class="checkout-container">
+          <button class="checkout-btn" (click)="goToCheckout()">
+            Continuar al Pago
+            <ion-icon name="arrow-forward-outline"></ion-icon>
+          </button>
+        </div>
+      }
+    </ion-content>

@@ -1,0 +1,203 @@
+.custom-toolbar {
+      --background: #1A1A2E;
+      --color: white;
+    }
+
+    .toolbar-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+    }
+
+    .build-content {
+      --background: #1A1A2E;
+    }
+
+    .loading-container {
+      display: flex;
+      justify-content: center;
+      padding: 60px 0;
+    }
+
+    .pizza-preview {
+      display: flex;
+      justify-content: center;
+      padding: 20px 0;
+    }
+
+    .preview-circle {
+      width: 140px;
+      height: 140px;
+      border-radius: 50%;
+      background: linear-gradient(135deg, rgba(230,57,70,0.2), rgba(244,162,97,0.2));
+      border: 2px dashed rgba(244,162,97,0.4);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 4px;
+    }
+
+    .pizza-emoji {
+      font-size: 56px;
+    }
+
+    .selected-count {
+      color: rgba(255,255,255,0.6);
+      font-size: 12px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .section {
+      padding: 0 16px 20px;
+    }
+
+    .section-title {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      margin: 0 0 12px;
+    }
+
+    .size-options {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+    }
+
+    .size-option {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 14px 8px;
+      border-radius: 14px;
+      border: 1px solid rgba(255,255,255,0.1);
+      background: rgba(255,255,255,0.06);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .size-option.active {
+      background: rgba(230,57,70,0.2);
+      border-color: #E63946;
+      box-shadow: 0 0 16px rgba(230,57,70,0.2);
+    }
+
+    .size-icon {
+      font-size: 24px;
+    }
+
+    .size-name {
+      color: white;
+      font-size: 12px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .size-price {
+      color: #F4A261;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .ingredients-grid {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .ingredient-chip {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.12);
+      background: rgba(255,255,255,0.06);
+      cursor: pointer;
+      transition: all 0.3s ease;
+    }
+
+    .ingredient-chip.selected {
+      background: rgba(46, 204, 113, 0.15);
+      border-color: #2ecc71;
+    }
+
+    .ingredient-name {
+      color: white;
+      font-size: 13px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+    }
+
+    .ingredient-price {
+      color: #F4A261;
+      font-size: 11px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 600;
+    }
+
+    .ingredient-price.free {
+      color: #2ecc71;
+    }
+
+    .check-icon {
+      color: #2ecc71;
+      font-size: 18px;
+    }
+
+    .total-bar {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      background: rgba(26,26,46,0.95);
+      backdrop-filter: blur(20px);
+      border-top: 1px solid rgba(255,255,255,0.1);
+      padding: 16px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      z-index: 100;
+    }
+
+    .total-label {
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      font-family: 'Poppins', sans-serif;
+      display: block;
+    }
+
+    .total-price {
+      color: white;
+      font-size: 24px;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .add-to-cart-btn {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      padding: 14px 24px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #E63946, #F4A261);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(230,57,70,0.4);
+      transition: all 0.3s ease;
+    }
+
+    .add-to-cart-btn:disabled {
+      opacity: 0.5;
+    }
+
+    .add-to-cart-btn ion-icon {
+      font-size: 20px;
+    }

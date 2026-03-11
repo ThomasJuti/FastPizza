@@ -1,0 +1,210 @@
+.custom-toolbar {
+  --background: var(--fast-pizza-bg);
+  --color: var(--fast-pizza-text);
+}
+
+.toolbar-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: var(--fast-pizza-text);
+}
+
+.orders-content {
+  --background: var(--fast-pizza-bg);
+}
+
+.loading-container {
+  display: flex;
+  justify-content: center;
+  padding: 60px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  text-align: center;
+  padding: 24px;
+}
+
+.empty-icon {
+  font-size: 64px;
+  margin-bottom: 16px;
+  opacity: 0.6;
+}
+
+.empty-state h2 {
+  color: var(--fast-pizza-text);
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  margin: 0 0 8px;
+}
+
+.empty-state p {
+  color: var(--fast-pizza-text-muted);
+  font-family: 'Poppins', sans-serif;
+  margin: 0 0 24px;
+}
+
+.btn-primary {
+  padding: 14px 28px;
+  border: none;
+  border-radius: 20px;
+  background: var(--fast-pizza-primary);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 8px 20px rgba(255, 107, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+.orders-list {
+  padding: 16px 20px 100px;
+}
+
+.order-card {
+  background: var(--fast-pizza-card);
+  border-radius: 20px;
+  padding: 16px;
+  margin-bottom: 14px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+}
+
+.order-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 12px;
+}
+
+.order-id-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.order-emoji {
+  font-size: 24px;
+}
+
+.order-id {
+  color: var(--fast-pizza-text);
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.status-badge {
+  padding: 4px 12px;
+  border-radius: 10px;
+  font-size: 12px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.status-badge.pendiente {
+  background: rgba(241, 196, 15, 0.2);
+  color: #b7950b;
+}
+
+.status-badge.confirmado {
+  background: rgba(52, 152, 219, 0.15);
+  color: #2980b9;
+}
+
+.status-badge.preparando {
+  background: rgba(255, 107, 0, 0.15);
+  color: var(--fast-pizza-primary);
+}
+
+.status-badge.enviado {
+  background: rgba(155, 89, 182, 0.15);
+  color: #7d3c98;
+}
+
+.status-badge.entregado {
+  background: rgba(46, 204, 113, 0.15);
+  color: #27ae60;
+}
+
+.status-badge.cancelado {
+  background: rgba(231, 76, 60, 0.15);
+  color: #c0392b;
+}
+
+.order-items-preview {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-bottom: 12px;
+}
+
+.item-tag {
+  padding: 4px 10px;
+  border-radius: 10px;
+  background: var(--fast-pizza-bg);
+  color: var(--fast-pizza-text-muted);
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.order-footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.order-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: var(--fast-pizza-text-muted);
+  font-size: 12px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.order-meta ion-icon {
+  font-size: 16px;
+}
+
+.order-total {
+  color: var(--fast-pizza-primary);
+  font-size: 17px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+}
+
+.map-btn {
+  width: 100%;
+  margin-top: 12px;
+  padding: 12px;
+  border: 1px solid rgba(255, 107, 0, 0.35);
+  border-radius: 14px;
+  background: transparent;
+  color: var(--fast-pizza-primary);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  transition: all 0.2s ease;
+}
+
+.map-btn:active {
+  background: rgba(255, 107, 0, 0.08);
+}
+
+.map-btn ion-icon {
+  font-size: 18px;
+}

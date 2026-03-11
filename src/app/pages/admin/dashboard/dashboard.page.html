@@ -1,0 +1,121 @@
+<ion-header class="ion-no-border">
+      <ion-toolbar class="custom-toolbar">
+        <ion-title class="toolbar-title">🛠️ Panel Admin</ion-title>
+        <ion-buttons slot="end">
+          <ion-button (click)="logout()" color="light">
+            <ion-icon name="log-out-outline" slot="icon-only"></ion-icon>
+          </ion-button>
+        </ion-buttons>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="admin-content" [fullscreen]="true">
+      <!-- Stats -->
+      <div class="stats-grid">
+        <div class="stat-card">
+          <span class="stat-value">{{ pendingCount }}</span>
+          <span class="stat-label">Pendientes</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{{ preparingCount }}</span>
+          <span class="stat-label">Preparando</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{{ sentCount }}</span>
+          <span class="stat-label">Enviados</span>
+        </div>
+        <div class="stat-card">
+          <span class="stat-value">{{ deliveredCount }}</span>
+          <span class="stat-label">Entregados</span>
+        </div>
+      </div>
+
+      <!-- Manage Menu Button -->
+      <button class="manage-menu-btn" (click)="goToManageMenu()">
+        <ion-icon name="restaurant-outline"></ion-icon>
+        Gestionar Menú
+      </button>
+
+      <!-- Seed Data Button -->
+      <button class="seed-btn" (click)="seedData()">
+        Cargar datos de ejemplo
+      </button>
+
+      <!-- Orders -->
+      <h2 class="section-title">Pedidos Recientes</h2>
+
+      <!-- Status Filter -->
+      <div class="filter-row">
+        @for (filter of statusFilters; track filter.value) {
+          <button
+            class="filter-chip"
+            [class.active]="activeFilter === filter.value"
+            (click)="activeFilter = filter.value"
+          >
+            {{ filter.label }}
+          </button>
+        }
+      </div>
+
+      @if (isLoading) {
+        <div class="loading-container">
+          <ion-spinner name="crescent" color="primary"></ion-spinner>
+        </div>
+      } @else {
+        @for (order of filteredOrders; track order.id) {
+          <div class="order-card-admin">
+            <div class="order-header-admin">
+              <div>
+                <span class="order-id-admin">#{{ order.id?.substring(0, 8) }}</span>
+                <span class="order-user">{{ order.userName || order.userEmail }}</span>
+              </div>
+              <span class="status-badge" [class]="order.status">{{ getStatusLabel(order.status) }}</span>
+            </div>
+
+            <div class="order-items-admin">
+              @for (item of order.items; track item.id) {
+                <span>{{ item.quantity }}x {{ item.name }}</span>
+              }
+            </div>
+
+            <div class="order-meta-admin">
+              <span>📍 {{ order.address }}</span>
+              <span>📞 {{ order.phone }}</span>
+              <span class="order-total-admin">\$ {{ order.total | number }}</span>
+            </div>
+
+            <!-- Status Actions -->
+            <div class="status-actions">
+              @if (order.status === 'pendiente' || order.status === 'confirmado') {
+                <button class="action-btn preparing" (click)="updateStatus(order.id!, 'preparando')">
+                  <ion-icon name="restaurant-outline"></ion-icon> Preparando
+                </button>
+              }
+              @if (order.status === 'preparando') {
+                <button class="action-btn sent" (click)="updateStatus(order.id!, 'enviado')">
+                  <ion-icon name="bicycle-outline"></ion-icon> Enviado
+                </button>
+              }
+              @if (order.status === 'enviado') {
+                <button class="action-btn delivered" (click)="updateStatus(order.id!, 'entregado')">
+                  <ion-icon name="bag-check-outline"></ion-icon> Entregado
+                </button>
+              }
+              @if (order.status !== 'entregado' && order.status !== 'cancelado') {
+                <button class="action-btn cancel" (click)="updateStatus(order.id!, 'cancelado')">
+                  <ion-icon name="close-circle-outline"></ion-icon>
+                </button>
+              }
+            </div>
+          </div>
+        }
+
+        @if (filteredOrders.length === 0) {
+          <div class="empty-admin">
+            <p>No hay pedidos {{ activeFilter !== 'todos' ? 'con este estado' : '' }}</p>
+          </div>
+        }
+      }
+
+      <div style="height: 100px;"></div>
+    </ion-content>

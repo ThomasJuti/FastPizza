@@ -1,0 +1,244 @@
+.custom-toolbar {
+      --background: #1A1A2E;
+      --color: white;
+    }
+
+    .toolbar-title {
+      font-family: 'Poppins', sans-serif;
+      font-weight: 700;
+    }
+
+    .admin-content {
+      --background: #1A1A2E;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      padding: 16px;
+    }
+
+    .stat-card {
+      background: rgba(255,255,255,0.06);
+      border-radius: 14px;
+      padding: 14px 8px;
+      text-align: center;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .stat-value {
+      display: block;
+      color: #F4A261;
+      font-size: 24px;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .stat-label {
+      color: rgba(255,255,255,0.5);
+      font-size: 11px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .manage-menu-btn {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      width: calc(100% - 32px);
+      margin: 0 16px 10px;
+      padding: 14px;
+      border: none;
+      border-radius: 14px;
+      background: linear-gradient(135deg, #E63946, #F4A261);
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      box-shadow: 0 4px 16px rgba(230,57,70,0.3);
+    }
+
+    .manage-menu-btn ion-icon {
+      font-size: 20px;
+    }
+
+    .seed-btn {
+      display: block;
+      width: calc(100% - 32px);
+      margin: 0 16px 16px;
+      padding: 12px;
+      border: 1px dashed rgba(255,255,255,0.2);
+      border-radius: 12px;
+      background: transparent;
+      color: rgba(255,255,255,0.5);
+      font-size: 14px;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .seed-btn:active {
+      background: rgba(255,255,255,0.06);
+    }
+
+    .section-title {
+      color: white;
+      font-size: 18px;
+      font-weight: 700;
+      font-family: 'Poppins', sans-serif;
+      padding: 0 16px;
+      margin: 8px 0 12px;
+    }
+
+    .filter-row {
+      display: flex;
+      gap: 8px;
+      padding: 0 16px 14px;
+      overflow-x: auto;
+    }
+
+    .filter-row::-webkit-scrollbar { display: none; }
+
+    .filter-chip {
+      padding: 6px 14px;
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.15);
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.5);
+      font-size: 13px;
+      font-family: 'Poppins', sans-serif;
+      font-weight: 500;
+      white-space: nowrap;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .filter-chip.active {
+      background: #E63946;
+      border-color: #E63946;
+      color: white;
+    }
+
+    .loading-container {
+      display: flex;
+      justify-content: center;
+      padding: 40px;
+    }
+
+    .order-card-admin {
+      margin: 0 16px 14px;
+      padding: 16px;
+      background: rgba(255,255,255,0.06);
+      border-radius: 16px;
+      border: 1px solid rgba(255,255,255,0.08);
+    }
+
+    .order-header-admin {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 10px;
+    }
+
+    .order-id-admin {
+      display: block;
+      color: white;
+      font-size: 15px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .order-user {
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .status-badge {
+      padding: 4px 10px;
+      border-radius: 8px;
+      font-size: 11px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .status-badge.pendiente { background: rgba(241,196,15,0.2); color: #f1c40f; }
+    .status-badge.confirmado { background: rgba(52,152,219,0.2); color: #3498db; }
+    .status-badge.preparando { background: rgba(244,162,97,0.2); color: #F4A261; }
+    .status-badge.enviado { background: rgba(155,89,182,0.2); color: #9b59b6; }
+    .status-badge.entregado { background: rgba(46,204,113,0.2); color: #2ecc71; }
+    .status-badge.cancelado { background: rgba(231,76,60,0.2); color: #e74c3c; }
+
+    .order-items-admin {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-bottom: 10px;
+    }
+
+    .order-items-admin span {
+      padding: 4px 10px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.06);
+      color: rgba(255,255,255,0.6);
+      font-size: 12px;
+      font-family: 'Poppins', sans-serif;
+    }
+
+    .order-meta-admin {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      color: rgba(255,255,255,0.4);
+      font-size: 12px;
+      font-family: 'Poppins', sans-serif;
+      margin-bottom: 12px;
+    }
+
+    .order-total-admin {
+      color: #F4A261 !important;
+      font-weight: 700;
+      font-size: 14px;
+    }
+
+    .status-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .action-btn {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      padding: 8px 14px;
+      border-radius: 10px;
+      border: none;
+      font-size: 13px;
+      font-weight: 600;
+      font-family: 'Poppins', sans-serif;
+      cursor: pointer;
+      color: white;
+      transition: all 0.2s ease;
+    }
+
+    .action-btn:active { transform: scale(0.95); }
+
+    .action-btn.preparing { background: rgba(244,162,97,0.25); color: #F4A261; }
+    .action-btn.sent { background: rgba(155,89,182,0.25); color: #9b59b6; }
+    .action-btn.delivered { background: rgba(46,204,113,0.25); color: #2ecc71; }
+    .action-btn.cancel { background: rgba(231,76,60,0.15); color: #e74c3c; padding: 8px 10px; }
+
+    .action-btn ion-icon { font-size: 16px; }
+
+    .empty-admin {
+      text-align: center;
+      padding: 40px;
+    }
+
+    .empty-admin p {
+      color: rgba(255,255,255,0.4);
+      font-family: 'Poppins', sans-serif;
+    }

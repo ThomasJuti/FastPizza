@@ -1,0 +1,75 @@
+<ion-content class="auth-content" [fullscreen]="true">
+  <div class="auth-container">
+    <div class="auth-header">
+      <div class="brand-badge">
+        <ion-icon name="pizza-outline"></ion-icon>
+      </div>
+      <div class="auth-titles">
+        <h1>Bienvenido</h1>
+        <p>Inicia sesion para continuar</p>
+      </div>
+    </div>
+
+    <div class="auth-card">
+      <div class="auth-card-header">
+        <h2>Tu cuenta Fast Pizza</h2>
+        <p>Ingresa tus credenciales para empezar</p>
+      </div>
+
+      <div class="input-group">
+        <ion-icon name="mail-outline" class="input-icon"></ion-icon>
+        <input
+          type="email"
+          [(ngModel)]="email"
+          placeholder="Correo electronico"
+          class="custom-input"
+        />
+      </div>
+
+      <div class="input-group">
+        <ion-icon name="lock-closed-outline" class="input-icon"></ion-icon>
+        <input
+          [type]="showPassword ? 'text' : 'password'"
+          [(ngModel)]="password"
+          placeholder="Contrasena"
+          class="custom-input"
+        />
+        <button class="toggle-password" (click)="showPassword = !showPassword">
+          {{ showPassword ? '🙈' : '👁️' }}
+        </button>
+      </div>
+
+      @if (errorMessage) {
+        <div class="error-message">
+          <ion-text color="danger">{{ errorMessage }}</ion-text>
+        </div>
+      }
+
+      <button
+        class="btn-primary"
+        (click)="loginWithEmail()"
+        [disabled]="isLoading"
+      >
+        @if (isLoading) {
+          <ion-spinner name="crescent" color="light"></ion-spinner>
+        } @else {
+          Iniciar sesion
+        }
+      </button>
+
+      <div class="divider">
+        <span>o continuar con</span>
+      </div>
+
+      <button class="btn-google" (click)="loginWithGoogle()" [disabled]="isLoading">
+        <ion-icon name="logo-google"></ion-icon>
+        Google
+      </button>
+
+      <p class="auth-link">
+        ¿No tienes cuenta?
+        <a (click)="goToRegister()">Registrate aqui</a>
+      </p>
+    </div>
+  </div>
+</ion-content>

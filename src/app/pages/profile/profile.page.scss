@@ -1,0 +1,187 @@
+.custom-toolbar {
+  --background: var(--fast-pizza-bg);
+  --color: var(--fast-pizza-text);
+}
+
+.toolbar-title {
+  font-family: 'Poppins', sans-serif;
+  font-weight: 700;
+  color: var(--fast-pizza-text);
+}
+
+.profile-content {
+  --background: var(--fast-pizza-bg);
+}
+
+.profile-header {
+  text-align: center;
+  padding: 32px 24px 24px;
+}
+
+.avatar-circle {
+  width: 90px;
+  height: 90px;
+  border-radius: 50%;
+  background: rgba(255, 107, 0, 0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+  overflow: hidden;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.06);
+}
+
+.avatar-circle img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.avatar-circle ion-icon {
+  font-size: 48px;
+  color: var(--fast-pizza-primary);
+}
+
+.profile-name {
+  color: var(--fast-pizza-text);
+  font-size: 22px;
+  font-weight: 700;
+  font-family: 'Poppins', sans-serif;
+  margin: 0 0 4px;
+}
+
+.profile-email {
+  color: var(--fast-pizza-text-muted);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  margin: 0 0 12px;
+}
+
+.admin-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 14px;
+  border-radius: 12px;
+  background: rgba(255, 107, 0, 0.12);
+  color: var(--fast-pizza-primary);
+  font-size: 13px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+}
+
+.info-section {
+  margin: 0 20px;
+  background: var(--fast-pizza-card);
+  border-radius: 20px;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.04);
+  overflow: hidden;
+}
+
+.info-item {
+  display: flex;
+  justify-content: space-between;
+  padding: 16px 20px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+.info-item:last-child {
+  border-bottom: none;
+}
+
+.info-label {
+  color: var(--fast-pizza-text-muted);
+  font-size: 14px;
+  font-family: 'Poppins', sans-serif;
+}
+
+.info-value {
+  color: var(--fast-pizza-text);
+  font-size: 14px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  text-align: right;
+}
+
+.admin-panel-btn {
+  display: block;
+  width: calc(100% - 40px);
+  margin: 20px 20px 12px;
+  padding: 14px;
+  border: none;
+  border-radius: 20px;
+  background: var(--fast-pizza-primary);
+  color: white;
+  font-size: 15px;
+  font-weight: 600;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  box-shadow: 0 8px 24px rgba(255, 107, 0, 0.3);
+  transition: transform 0.2s ease;
+}
+
+.admin-panel-btn:active {
+  transform: scale(0.98);
+}
+
+.logout-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: calc(100% - 40px);
+  margin: 12px 20px 100px;
+  padding: 14px;
+  border: 1px solid rgba(0, 0, 0, 0.12);
+  border-radius: 20px;
+  background: transparent;
+  color: var(--fast-pizza-text-muted);
+  font-size: 15px;
+  font-weight: 500;
+  font-family: 'Poppins', sans-serif;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.logout-btn:active {
+  background: rgba(0, 0, 0, 0.04);
+  color: #c0392b;
+  border-color: rgba(192, 57, 43, 0.3);
+}
+
+.logout-btn ion-icon {
+  font-size: 20px;
+}
+
+.empty-state {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 60vh;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.empty-icon {
+  font-size: 64px;
+  color: var(--fast-pizza-text-muted);
+  margin-bottom: 16px;
+  opacity: 0.5;
+}
+
+.empty-state h3 {
+  color: var(--fast-pizza-text);
+  font-family: 'Poppins', sans-serif;
+  font-size: 20px;
+  font-weight: 600;
+  margin: 0 0 8px;
+}
+
+.empty-state p {
+  color: var(--fast-pizza-text-muted);
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  margin: 0 0 24px;
+  line-height: 1.5;
+}

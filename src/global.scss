@@ -1,12 +1,5 @@
 /*
- * App Global CSS
- * ----------------------------------------------------------------------------
- * Put style rules here that you want to apply globally. These styles are for
- * the entire app and not just one component. Additionally, this file can be
- * used as an entry point to import other CSS/Sass files to be included in the
- * output CSS.
- * For more information on global stylesheets, visit the documentation:
- * https://ionicframework.com/docs/layout/global-stylesheets
+ * Fast Pizza - Global Styles (Modern Light/Orange Theme)
  */
 
 /* Core CSS required for Ionic components to work properly */
@@ -18,20 +11,86 @@
 @import "@ionic/angular/css/typography.css";
 @import "@ionic/angular/css/display.css";
 
-/* Optional CSS utils that can be commented out */
+/* Optional CSS utils */
 @import "@ionic/angular/css/padding.css";
 @import "@ionic/angular/css/float-elements.css";
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
 
-/**
- * Ionic Dark Mode
- * -----------------------------------------------------
- * For more info, please see:
- * https://ionicframework.com/docs/theming/dark-mode
- */
+/* ===========================
+   CUSTOM GLOBAL STYLES (Modern Light Theme)
+   =========================== */
 
-/* @import "@ionic/angular/css/palettes/dark.always.css"; */
-/* @import "@ionic/angular/css/palettes/dark.class.css"; */
-@import '@ionic/angular/css/palettes/dark.system.css';
+:root {
+  /* Brand Colors */
+  --fast-pizza-primary: #FF6B00;
+  /* Vibrant Orange from Mockup */
+  --fast-pizza-bg: #FFF5F0;
+  /* Light peach background */
+  --fast-pizza-card: #FFFFFF;
+  --fast-pizza-text: #1A1A1A;
+  --fast-pizza-text-muted: #8A8A8E;
+  --fast-pizza-dark: #111111;
+  /* For the bottom tab bar */
+
+  /* Ionic Overrides */
+  --ion-background-color: var(--fast-pizza-bg);
+  --ion-text-color: var(--fast-pizza-text);
+  --ion-color-primary: var(--fast-pizza-primary);
+  --ion-card-background: var(--fast-pizza-card);
+  --ion-font-family: 'Poppins', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+* {
+  font-family: var(--ion-font-family);
+}
+
+body {
+  background: var(--fast-pizza-bg);
+  color: var(--fast-pizza-text);
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 4px;
+}
+
+::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.1);
+  border-radius: 4px;
+}
+
+/* Ionic overrides for light theme */
+ion-content {
+  --background: var(--fast-pizza-bg);
+}
+
+ion-toolbar {
+  --background: var(--fast-pizza-bg);
+  --color: var(--fast-pizza-text);
+}
+
+/* Prevent text selection on buttons */
+button {
+  -webkit-user-select: none;
+  user-select: none;
+}
+
+/* Smooth transitions globally */
+* {
+  -webkit-tap-highlight-color: transparent;
+}
+
+/* Loading spinner color */
+ion-spinner {
+  --color: var(--fast-pizza-primary);
+}
+
+ion-segment-button {
+  --indicator-color: var(--fast-pizza-primary);
+}

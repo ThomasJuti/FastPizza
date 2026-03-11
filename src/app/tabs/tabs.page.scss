@@ -1,1 +1,67 @@
+.custom-tab-bar {
+  position: absolute;
+  bottom: 24px;
+  left: 20px;
+  right: 20px;
+  height: 70px;
+  border-radius: 35px;
+  background: var(--fast-pizza-dark);
+  border: none;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15);
+  padding: 0 10px;
+  contain: none;
+  /* Allows the badge to overflow if needed */
 
+  /* Override internal ionic variables for the tab bar */
+  --background: var(--fast-pizza-dark);
+  --border: none;
+}
+
+ion-tab-button {
+  background: transparent;
+  --color: #888888;
+  --color-selected: #ffffff;
+  --padding-end: 0;
+  --padding-start: 0;
+  max-width: none;
+}
+
+.icon-container {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+ion-icon {
+  font-size: 24px;
+  transition: all 0.3s ease;
+}
+
+/* When selected, the container gets the orange background */
+ion-tab-button.tab-selected .icon-container {
+  background: var(--fast-pizza-primary);
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(255, 107, 0, 0.4);
+}
+
+.tab-badge {
+  position: absolute;
+  top: 4px;
+  right: 4px;
+  --background: #ffffff;
+  --color: var(--fast-pizza-primary);
+  font-size: 10px;
+  font-weight: 700;
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 50%;
+  padding: 0;
+}

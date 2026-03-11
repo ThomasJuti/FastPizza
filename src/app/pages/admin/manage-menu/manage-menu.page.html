@@ -1,0 +1,106 @@
+<ion-header class="ion-no-border">
+      <ion-toolbar class="custom-toolbar">
+        <ion-buttons slot="start">
+          <ion-back-button defaultHref="/admin/dashboard" text="" color="light"></ion-back-button>
+        </ion-buttons>
+        <ion-title class="toolbar-title">Gestionar Menú</ion-title>
+      </ion-toolbar>
+    </ion-header>
+
+    <ion-content class="manage-content" [fullscreen]="true">
+      <!-- Add Pizza -->
+      <div class="section-header">
+        <h2>🍕 Pizzas</h2>
+        <button class="add-btn-header" (click)="showPizzaForm = !showPizzaForm">
+          <ion-icon [name]="showPizzaForm ? 'close-outline' : 'add-outline'"></ion-icon>
+          {{ showPizzaForm ? 'Cancelar' : 'Agregar' }}
+        </button>
+      </div>
+
+      <!-- Pizza Form -->
+      @if (showPizzaForm) {
+        <div class="form-card">
+          <div class="form-group">
+            <input [(ngModel)]="newPizza.name" placeholder="Nombre" class="form-input" />
+          </div>
+          <div class="form-group">
+            <input [(ngModel)]="newPizza.description" placeholder="Descripción" class="form-input" />
+          </div>
+          <div class="form-group">
+            <input [(ngModel)]="newPizza.image" placeholder="URL de imagen" class="form-input" />
+          </div>
+          <div class="form-row">
+            <input type="number" [(ngModel)]="newPizza.price" placeholder="Precio" class="form-input" />
+            <select [(ngModel)]="newPizza.category" class="form-input">
+              <option value="clasica">Clásica</option>
+              <option value="premium">Premium</option>
+              <option value="vegetariana">Vegetariana</option>
+            </select>
+          </div>
+          <button class="save-btn" (click)="savePizza()">
+            Guardar Pizza
+          </button>
+        </div>
+      }
+
+      <!-- Pizza List -->
+      @for (pizza of pizzas; track pizza.id) {
+        <div class="menu-item-card">
+          <div class="menu-item-info">
+            <h3>{{ pizza.name }}</h3>
+            <p>{{ pizza.description }}</p>
+            <span class="item-price">\$ {{ pizza.price | number }}</span>
+            <span class="category-tag" [class]="pizza.category">{{ pizza.category }}</span>
+          </div>
+          <div class="menu-item-actions">
+            <button class="icon-btn delete" (click)="deletePizza(pizza.id!)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+      }
+
+      <!-- Add Beverage -->
+      <div class="section-header">
+        <h2>🥤 Bebidas</h2>
+        <button class="add-btn-header" (click)="showBeverageForm = !showBeverageForm">
+          <ion-icon [name]="showBeverageForm ? 'close-outline' : 'add-outline'"></ion-icon>
+          {{ showBeverageForm ? 'Cancelar' : 'Agregar' }}
+        </button>
+      </div>
+
+      @if (showBeverageForm) {
+        <div class="form-card">
+          <div class="form-group">
+            <input [(ngModel)]="newBeverage.name" placeholder="Nombre" class="form-input" />
+          </div>
+          <div class="form-group">
+            <input [(ngModel)]="newBeverage.image" placeholder="URL de imagen" class="form-input" />
+          </div>
+          <div class="form-row">
+            <input type="number" [(ngModel)]="newBeverage.price" placeholder="Precio" class="form-input" />
+            <input [(ngModel)]="newBeverage.size" placeholder="Tamaño (350ml)" class="form-input" />
+          </div>
+          <button class="save-btn" (click)="saveBeverage()">
+            Guardar Bebida
+          </button>
+        </div>
+      }
+
+      @for (beverage of beverages; track beverage.id) {
+        <div class="menu-item-card">
+          <div class="menu-item-info">
+            <h3>{{ beverage.name }}</h3>
+            <span class="item-price">\$ {{ beverage.price | number }}</span>
+            <span class="size-tag">{{ beverage.size }}</span>
+          </div>
+          <div class="menu-item-actions">
+            <button class="icon-btn delete" (click)="deleteBeverage(beverage.id!)">
+              <ion-icon name="trash-outline"></ion-icon>
+            </button>
+          </div>
+        </div>
+      }
+
+      <div style="height: 80px;"></div>
+    </ion-content>
