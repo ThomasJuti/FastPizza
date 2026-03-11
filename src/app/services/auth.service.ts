@@ -3,8 +3,6 @@ import {
     Auth,
     signInWithEmailAndPassword,
     createUserWithEmailAndPassword,
-    signInWithPopup,
-    GoogleAuthProvider,
     signOut,
     user,
     updateProfile,
@@ -78,28 +76,6 @@ export class AuthService {
     // Login con email y contraseña
     async loginWithEmail(email: string, password: string): Promise<void> {
         await signInWithEmailAndPassword(this.auth, email, password);
-    }
-
-    // Login con Google
-    async loginWithGoogle(): Promise<void> {
-        const provider = new GoogleAuthProvider();
-        const credential = await signInWithPopup(this.auth, provider);
-
-        // Verificar si el usuario ya existe en Firestore
-        const userDocRef = doc(this.firestore, `users/${credential.user.uid}`);
-        const userDoc = await getDoc(userDocRef);
-
-        if (!userDoc.exists()) {
-            // Crear perfil nuevo para usuario de Google
-            const userProfile: UserProfile = {
-                uid: credential.user.uid,
-                email: credential.user.email || '',
-                displayName: credential.user.displayName || '',
-                role: 'user',
-                photoURL: credential.user.photoURL || ''
-            };
-            await setDoc(userDocRef, userProfile);
-        }
     }
 
     // Cerrar sesión

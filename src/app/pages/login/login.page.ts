@@ -7,7 +7,7 @@ import {
     IonIcon, IonText, IonSpinner, IonInputPasswordToggle
 } from '@ionic/angular/standalone';
 import { addIcons } from 'ionicons';
-import { logoGoogle, mailOutline, lockClosedOutline, pizzaOutline } from 'ionicons/icons';
+import { mailOutline, lockClosedOutline, pizzaOutline } from 'ionicons/icons';
 import { AuthService } from '../../services/auth.service';
 
 @Component({
@@ -32,7 +32,7 @@ export class LoginPage {
     errorMessage = '';
 
     constructor() {
-        addIcons({ logoGoogle, mailOutline, lockClosedOutline, pizzaOutline });
+        addIcons({ mailOutline, lockClosedOutline, pizzaOutline });
     }
 
     async loginWithEmail() {
@@ -47,19 +47,6 @@ export class LoginPage {
             this.router.navigate(['/tabs/menu']);
         } catch (error: any) {
             this.errorMessage = this.getErrorMessage(error.code);
-        } finally {
-            this.isLoading = false;
-        }
-    }
-
-    async loginWithGoogle() {
-        this.isLoading = true;
-        this.errorMessage = '';
-        try {
-            await this.authService.loginWithGoogle();
-            this.router.navigate(['/tabs/menu']);
-        } catch (error: any) {
-            this.errorMessage = 'Error al iniciar sesión con Google';
         } finally {
             this.isLoading = false;
         }
